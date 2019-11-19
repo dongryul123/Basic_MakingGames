@@ -22,7 +22,7 @@ DOWN = (0, 1)
 RIGHT = (1, 0)
 LEFT = (-1, 0)
 
-FPS = 10
+FPS = 10 # Frame Per Second
 
 class Python(object):
     def __init__(self):
@@ -96,7 +96,8 @@ surface = pygame.Surface(window.get_size())
 surface = surface.convert()
 surface.fill(WHITE)
 clock = pygame.time.Clock()
-pygame.key.set_repeat(1, 40)
+pygame.key.set_repeat(1, 40) #When the keyboard repeat is enabled,
+                            #keys that are held down will generate multiple pygame.KEYDOWN events. The delay parameter is the number of milliseconds before the first repeated pygame.KEYDOWN event will be sent.
 window.blit(surface, (0, 0)) # 비트연산을 통한 화면 구성
 
 while True:
