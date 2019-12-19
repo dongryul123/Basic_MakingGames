@@ -34,8 +34,8 @@ class Python(object):
         self.positions = [((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2))]
         self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
 
-    def control(self, xy):
-        if (xy[0] * -1, xy[1] * -1) == self.direction:
+    def control(self, xy): # 방향키 입력값 xy가 주어졌을 때
+        if (xy[0] * -1, xy[1] * -1) == self.direction: #현재 방향의 반대일 경우 그냥 return (현 방향 유지))
             return
         else:
             self.direction = xy
@@ -43,16 +43,16 @@ class Python(object):
     def move(self):
         cur = self.positions[0] # 뱀의 머리 부분
         x, y = self.direction
-        new = ((cur[0] + (x * GRID_SIZE)) % WINDOW_WIDTH, (cur[1] + (y * GRID_SIZE)) % WINDOW_HEIGHT )
+        new = ((cur[0] + (x * GRID_SIZE)) % WINDOW_WIDTH, (cur[1] + (y * GRID_SIZE)) % WINDOW_HEIGHT ) ### _ 새 좌표 입력?
         if new in self.positions[2:]:
             self.create() # 뱀이 자기 자신의 부분을 먹음. 다시 새로 시작
         else:
-            self.positions.insert(0, new)
+            self.positions.insert(0, new) # 0번째에 new 좌표 추가. 머리의 움직인 부분 추가
             if len(self.positions) > self.length:
-                self.positions.pop()
+                self.positions.pop() # 끝에 좌표 삭제. 꼬리 부분 삭제
 
     def eat(self):
-        self.length += 1
+        self.length += 1 # length 1 추가
 
     def draw(self, surface):
         for p in self.positions:
@@ -61,7 +61,7 @@ class Python(object):
 class Feed(object):
     def __init__(self):
         self.position = (0, 0)
-        self.color = ORANGE
+        self.color = BLUE
         self.create()
 
     def create(self):
